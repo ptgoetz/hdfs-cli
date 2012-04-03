@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="HDFS-CLI : Interactive shell for interacting with Hadoop HDFS. Supports multiple HDFS hosts, command line history and tab completion." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>HDFS-CLI</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ptgoetz/hdfs-cli">Fork Me on GitHub</a>
+
+          <h1 id="project_title">HDFS-CLI</h1>
+          <h2 id="project_tagline">Interactive shell for interacting with Hadoop HDFS. Supports multiple HDFS hosts, command line history and tab completion.</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/ptgoetz/hdfs-cli/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/ptgoetz/hdfs-cli/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>HDFS-CLI</h2>
+
+<p>HDFS-CLI is an interactive command line shell that makes interacting with the Hadoop Distribted Filesystem (HDFS)
+simpler and more intuitive than the standard command-line tools that come with Hadoop. If you are familiar with OS X, Linux, or even Windows terminal/console-based applications, then you are likely familiar with features such as tab completion, command history, and ANSI formatting.</p>
+
+<h3>Basic Usage</h3>
+
+<p>HDFS-CLI works much like a command-line ftp client: You first establish a connection to a remote HDFS filesystem,
+then manage local/remote files and transfers.</p>
+
+<p>To start HDFS-CLI, run the following command:</p>
+
+<pre><code>java -jar hdfs-cli-0.0.1-SNAPSHOT.jar
+</code></pre>
+
+<h4>Local vs. Remote Commands</h4>
+
+<p>When working within a HDFS-CLI session, you manage both local (on your computer) and remote (HDFS) files. By convention, commands that apply to both local and remote filesystems are differentiated by prepending an <code>l</code>
+character to the name to denote "local".</p>
+
+<p>For example:</p>
+
+<p><code>lls</code> lists local files in the local current working directory.</p>
+
+<p><code>ls</code> lists remote files in the remote current working directory.</p>
+
+<p>Every HDFS-CLI session keeps track of both the local and remote current working directories.</p>
+
+<h3>Available Commands</h3>
+
+<h4>Common Commands</h4>
+
+<pre><code>connect     connect to a remote HDFS instance
+help        display help information
+put         upload local files to the remote HDFS
+</code></pre>
+
+<h4>Remote (HDFS) Commands</h4>
+
+<pre><code>cd       change current working directory
+ls       list directory contents
+rm       delete files/directories
+pwd      print working directory path
+cat      print file contents
+head     print first few lines of a file
+mkdir    create directories
+</code></pre>
+
+<h4>Local (Local File System) Commands</h4>
+
+<pre><code>lcd      change current working directory
+lls      list directory contents
+lrm      delete files/directories
+lpwd     print working directory path
+lcat     print file contents
+lhead    print first few lines of a file
+lmkdir   create directories
+</code></pre>
+
+<h3>Command Documentation</h3>
+
+<p>Help for any command can be obtained by executing the <code>help</code> command:</p>
+
+<pre><code>help pwd
+</code></pre>
+
+<p>Note that currently, documentation may be limited.</p>
+
+<h3>Known Bugs/Limitations</h3>
+
+<ul>
+<li>No support for paths containing spaces</li>
+<li>No support for Windows XP</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">HDFS-CLI maintained by <a href="https://github.com/ptgoetz">ptgoetz</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

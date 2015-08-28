@@ -7,9 +7,11 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.instanceone.stemshell.Environment;
 import org.apache.hadoop.fs.FileStatus;
 
 import com.instanceone.stemshell.format.ANSIStyle;
+import org.apache.hadoop.fs.FileSystem;
 
 public class FSUtil {
 
@@ -19,18 +21,20 @@ public class FSUtil {
     public static String longFormat(FileStatus file) {
         String retval = (file.isDir() ? "d" : "-")
                         + file.getPermission()
-                        + "  "
+                        + (file.getPermission().getAclBit() ? "+":"")
+                        + (file.getPermission().getEncryptedBit() ? "#":"")
+                        + "\t"
                         + file.getOwner()
-                        + "  "
+                        + "\t"
                         + file.getGroup()
-                        + "  "
+                        + "\t"
                         + formatFileSize(file.getLen())
-                        + "  "
+                        + "\t"
                         + formatDate(file.getModificationTime())
 
-                        + "   "
+                        + "\t"
                         + (file.isDir() ? ANSIStyle.style(file.getPath()
-                                        .getName(), ANSIStyle.FG_BLUE) : file
+                                        .getName(), ANSIStyle.FG_GREEN) : file
                                         .getPath().getName());
 
         return retval;
@@ -38,19 +42,40 @@ public class FSUtil {
 
     public static String shortFormat(FileStatus file) {
         String retval = (file.isDir() ? ANSIStyle.style(file.getPath()
-                        .getName(), ANSIStyle.FG_BLUE) : file.getPath()
+                        .getName(), ANSIStyle.FG_GREEN) : file.getPath()
                         .getName());
 
         return retval;
     }
-    
+
+    public static void prompt(Environment env) {
+        try {
+            StringBuilder sb = new StringBuilder();
+
+            FileSystem localfs = (FileSystem) env.getValue(HdfsCommand.LOCAL_FS);
+            FileSystem hdfs = (FileSystem) env.getValue(HdfsCommand.HDFS);
+
+            String hdfswd = hdfs.getWorkingDirectory().toString();
+            String localwd = localfs.getWorkingDirectory().toString();
+
+            String hwd = ANSIStyle.style(hdfswd, ANSIStyle.FG_GREEN) ;
+
+            String lwd = ANSIStyle.style(localwd, ANSIStyle.FG_YELLOW);
+
+            env.setPrompt(" " + hwd + "\n " + lwd + "\n$ ");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static String formatDate(long millis){
         Date date = new Date(millis);
         return formatDate(date);
     }
     
     public static String formatDate(Date date){
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss z");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
         return df.format(date);
     }
     

@@ -1,3 +1,9 @@
+# We're moving...
+
+We've been replaced!  Well, actually we're growing to more than just hdfs.  A new project has been created to reflect this and is now the active replacement.  Please see `hadoopcli` for all the same capabilities, plus more!
+
+[Hadoop-Cli](https://github.com/dstreev/hadoop-cli)
+
 ## HDFS-CLI
 
 HDFS-CLI is an interactive command line shell that makes interacting with the Hadoop Distribted Filesystem (HDFS)
